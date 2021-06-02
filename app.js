@@ -1,5 +1,10 @@
 const express = require('express')
+const UserModel = require('./models/UserModel')
 const app = express()
+require('dotenv').config()
+
+
+const PORT = process.env.PORT
 
 app.set('view engine', 'ejs')
 app.use(express.json())
@@ -10,10 +15,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    console.log(req.body);
-    res.redirect('/')
+    UserModel.create()
+    res.send(`Tabriklaymiz siz ro'yxatdan o'tdingiz!`)
 })
 
-app.listen(3000, () => console.log(`SERVER READY AT http://localhost:3000`))
+app.listen(PORT, () => console.log(`SERVER READY AT http://localhost:${PORT}`))
 
 // tel name surname age profession address province country
